@@ -16,8 +16,7 @@ import java.util.List;
 
 
 @Service
-
-public class UserServiceImp implements UserDetailsService, UserService {
+public class UserServiceImp implements UserService {
 
 
     private final UserRepositoryTest userRepositoryTest;
@@ -26,19 +25,10 @@ public class UserServiceImp implements UserDetailsService, UserService {
     @Autowired
     public UserServiceImp(UserRepositoryTest userRepositoryTest, RoleRepositoryTest roleRepository) {
         this.userRepositoryTest = userRepositoryTest;
-        this.roleRepository = roleRepository;
-    }
+        this.roleRepository = roleRepository;   }
 
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails user = userRepositoryTest.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
 
-        return user;
-    }
 
 
     public List<Role> listRoles() {
@@ -61,11 +51,6 @@ public class UserServiceImp implements UserDetailsService, UserService {
 
     public User getUserBiId(long id) {
         return userRepositoryTest.getOne(id);
-    }
-
-
-    public User getUserByName(String name) {
-        return userRepositoryTest.findUserByUsername(name);
     }
 
 

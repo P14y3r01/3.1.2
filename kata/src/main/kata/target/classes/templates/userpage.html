@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>USERPAGE TEST</title>
+    <style >
+        TABLE {
+            background: #baff8f; /* Цвет фона таблицы */
+            border: 5px double #000; /* Рамка вокруг таблицы */
+        }
+        TD, TH {
+            padding: 5px; /* Поля вокруг текста */
+            border: 1px solid #fff; /* Рамка вокруг ячеек */
+        }
+    </style>
+
+
+</head>
+<body>
+<div th:align="center" class="tg">
+    <table border="5" cellpadding="15">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>SURNAME</th>
+            <th>AGE</th>
+            <th>USERNAME</th>
+        </tr>
+        <tr th:each="user:${currentUser}">
+            <td th:text="${currentUser.id}"></td>
+            <td th:text="${currentUser.name}"></td>
+            <td th:text="${currentUser.surname}"></td>
+            <td th:text="${currentUser.age}"></td>
+            <td th:text="${currentUser.username}"></td>
+        <tr th:each="findAll:${user}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.surname}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.username}"></td>
+        </tr>
+    </table>
+    <br>
+    <td>
+        <button><a th:href="@{/api/admin/user-list}">GO TO USER LIST</a></button>
+    </td>
+    <br><br><br>
+    <td>
+        <button><a th:href="@{/logout}">LOGOUT</a></button>
+    </td>
+</div>
+</body>
+</html>

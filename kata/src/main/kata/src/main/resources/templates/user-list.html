@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN PAGE</title>
+    <style >
+        TABLE {
+            background: #367042; /* Цвет фона таблицы */
+            border: 5px double #000; /* Рамка вокруг таблицы */
+        }
+        TD, TH {
+            padding: 5px; /* Поля вокруг текста */
+            border: 1px solid #fff; /* Рамка вокруг ячеек */
+        }
+    </style>
+</head>
+<body>
+<br>
+<div th:align="center" class="tg">
+    <h2>User List</h2>
+    <table border="5" cellpadding="15">
+        <thead >
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>SURNAME</th>
+            <th>AGE</th>
+            <th>USERNAME</th>
+            <th>USER ROLE</th>
+            <th colspan="3">
+                <button><a href="/admin/create-user">NEW</a></button>
+            </th>
+        </tr>
+        </thead>
+        <tr th:each="user : ${users}">
+            <td th:utext="${user.id}">...</td>
+            <td th:text="${user.name}">...</td>
+            <td th:utext="${user.surname}">...</td>
+            <td th:utext="${user.age}">...</td>
+            <td th:utext="${user.username}">...</td>
+            <td >
+                <span th:each="role : ${user.roles}"
+                      th:text="'   ' + ${role.name}"> </span>  </td>
+            <td>
+                <button><a th:href="@{/admin/{id}(id=${user.id})}">Info</a></button>
+            </td>
+            <td>
+                <button><a th:href="@{/admin/update-user/{id}(id=${user.id})}">Update</a></button>
+            </td>
+            <td>
+                <button><a th:href="@{/admin/user-delete/{id}(id=${user.id})}">Delete</a></button>
+            </td>
+            </td>
+        </tr>
+    </table>
+    <br><br>
+    <td>
+        <button><a th:href="@{/logout}">LOGOUT</a></button>
+    </td>
+</div>
+
+</body>
+</html>
